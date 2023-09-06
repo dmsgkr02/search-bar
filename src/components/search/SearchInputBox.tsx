@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { cacheApiServer } from '../../api/CacheApiServer';
 
 type Props = {
   changeFocus: React.FocusEventHandler<HTMLInputElement>;
