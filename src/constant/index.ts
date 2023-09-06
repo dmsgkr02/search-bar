@@ -1,0 +1,9 @@
+export const HEADER_FETCH_DATE = 'fetch-date';
+export const MILLISECONDS = 1000;
+export const MINUTES = 60;
+export const EXPIRE_TIME_ONE_MINUTES = MILLISECONDS * MINUTES;
+export const INPUT_PLACE_HOLDER = '질환명을 입력해 주세요';
+export const IMAGE_ALT = '돋보기 이미지';
+export const MAXIMUM_ITEM = 10;
+export const DEBOUNCE_TERM = 1000;
+export const SEARCH_TITLE = '국내 모든 임상시험 검색하고 온라인으로 참여하기';

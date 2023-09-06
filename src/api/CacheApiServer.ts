@@ -1,7 +1,4 @@
-const HEADER_FETCH_DATE = 'fetch-date';
-const MILLISECONDS = 1000;
-const MINUTES = 60;
-const EXPIRE_TIME = MILLISECONDS * MINUTES;
+import { HEADER_FETCH_DATE, MILLISECONDS, MINUTES, EXPIRE_TIME_ONE_MINUTES } from '../constant';
 
 class CacheApiServer {
   private cacheStorageName: string;
@@ -52,7 +49,7 @@ class CacheApiServer {
     const fetchDate = new Date(response.headers.get(HEADER_FETCH_DATE)!).getTime();
     const now = new Date().getTime();
 
-    return now - fetchDate < EXPIRE_TIME;
+    return now - fetchDate < EXPIRE_TIME_ONE_MINUTES;
   }
 }
 

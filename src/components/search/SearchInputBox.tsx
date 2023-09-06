@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Glasses from './glasses.svg';
+import { INPUT_PLACE_HOLDER, IMAGE_ALT } from '../../constant';
 
 type Props = {
   changeFocus: React.FocusEventHandler<HTMLInputElement>;
@@ -22,13 +23,13 @@ export default function SearchInputBox({
   return (
     <Container>
       <ImageDiv>
-        <Image src={Glasses} alt="돋보기 이미지" />
+        <Image src={Glasses} alt={IMAGE_ALT} />
       </ImageDiv>
       <Input
         type="text"
         onFocus={changeFocus}
         onBlur={changeFocus}
-        placeholder="질환명을 입력해 주세요"
+        placeholder={INPUT_PLACE_HOLDER}
         value={searchWord}
         onChange={event => handleSearchWord(event)}
         onKeyDown={event => onKeyListener(event)}

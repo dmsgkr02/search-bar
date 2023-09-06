@@ -4,6 +4,7 @@ import SearchItem from './SearchItem';
 import { cacheApiServer } from '../../api/CacheApiServer';
 import { Sick } from '../../types';
 import { useDebounce } from '../../hooks/useDebounce';
+import { MAXIMUM_ITEM, DEBOUNCE_TERM } from '../../constant';
 
 type Props = {
   searchWord: string;
@@ -11,9 +12,6 @@ type Props = {
   setRecommendKeyword: React.Dispatch<React.SetStateAction<[]>>;
   activeIndex: number;
 };
-
-const MAXIMUM_ITEM = 10;
-const DEBOUNCE_TERM = 1000;
 
 export default function SearchWordBox({
   searchWord,
