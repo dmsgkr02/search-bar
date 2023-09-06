@@ -25,7 +25,7 @@ export default function SearchWordBox({
 
   useEffect(() => {
     const getData = async () => {
-      const data = await cacheApiServer.getDataByQuery(searchWord);
+      const data = await cacheApiServer.getDataByQuery(debouncedValue);
       if (data.length > MAXIMUM_ITEM) {
         setRecommendKeyword(data.slice(0, MAXIMUM_ITEM));
       } else {
@@ -34,7 +34,7 @@ export default function SearchWordBox({
     };
 
     getData();
-  }, [debouncedValue]);
+  }, [debouncedValue, setRecommendKeyword]);
 
   return (
     <Container>
