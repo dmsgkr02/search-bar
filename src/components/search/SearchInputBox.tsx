@@ -5,11 +5,15 @@ type Props = {
   changeFocus: React.FocusEventHandler<HTMLInputElement>;
   searchWord: string;
   setSearchWord: React.Dispatch<React.SetStateAction<string>>;
+  onKeyListener: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 };
 
-// const regExp = /^[ㄱ-ㅎ가-힣a-zA-Z]+$/;
-
-export default function SearchInputBox({ changeFocus, searchWord, setSearchWord }: Props) {
+export default function SearchInputBox({
+  changeFocus,
+  searchWord,
+  setSearchWord,
+  onKeyListener,
+}: Props) {
   const handleSearchWord = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchWord(event.target.value);
   };
@@ -24,6 +28,7 @@ export default function SearchInputBox({ changeFocus, searchWord, setSearchWord 
         placeholder="질환명을 입력해 주세요"
         value={searchWord}
         onChange={event => handleSearchWord(event)}
+        onKeyDown={event => onKeyListener(event)}
       />
       <Button>검색</Button>
     </Container>
