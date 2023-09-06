@@ -7,19 +7,25 @@ import { useDebounce } from '../../hooks/useDebounce';
 
 type Props = {
   searchWord: string;
+  recommendKeyword: [];
+  setRecommendKeyword: React.Dispatch<React.SetStateAction<[]>>;
+  activeIndex: number;
 };
 
 const MAXIMUM_ITEM = 10;
 const DEBOUNCE_TERM = 1000;
 
-export default function SearchWordBox({ searchWord }: Props) {
-  const [recommendKeyword, setRecommendKeyword] = useState([]);
+export default function SearchWordBox({
+  searchWord,
+  setRecommendKeyword,
+  recommendKeyword,
+  activeIndex,
+}: Props) {
   const debouncedValue = useDebounce(searchWord, DEBOUNCE_TERM);
 
   useEffect(() => {
     const getData = async () => {
       const data = await cacheApiServer.getDataByQuery(searchWord);
-      console.info(data);
       if (data.length > MAXIMUM_ITEM) {
         setRecommendKeyword(data.slice(0, MAXIMUM_ITEM));
       } else {
@@ -33,8 +39,10 @@ export default function SearchWordBox({ searchWord }: Props) {
   return (
     <Container>
       <ContentDiv>
-        {recommendKeyword.map((keyword: Sick) => {
-          return <SearchItem key={keyword.sickCd} word={keyword.sickNm} />;
+        {recommendKeyword.map((keyword: Sick, index) => {
+          return (
+            <SearchItem key={keyword.sickCd} word={keyword.sickNm} active={activeIndex === index} />
+          );
         })}
       </ContentDiv>
     </Container>
