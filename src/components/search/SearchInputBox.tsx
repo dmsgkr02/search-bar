@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Glasses from './glasses.svg';
 
 type Props = {
   changeFocus: React.FocusEventHandler<HTMLInputElement>;
@@ -20,7 +21,9 @@ export default function SearchInputBox({
 
   return (
     <Container>
-      <ImageDiv>검색</ImageDiv>
+      <ImageDiv>
+        <Image src={Glasses} alt="돋보기 이미지" />
+      </ImageDiv>
       <Input
         type="text"
         onFocus={changeFocus}
@@ -47,7 +50,6 @@ const Container = styled.div`
 const ImageDiv = styled.div`
   flex-basis: 30px;
   border-radius: 30px;
-  border: 1px solid black;
 `;
 
 const Input = styled.input`
@@ -58,6 +60,7 @@ const Input = styled.input`
   height: 100%;
   padding: 0 10px;
   flex: 1;
+  outline: none;
 `;
 const Button = styled.button`
   border-radius: 30px;
@@ -66,4 +69,8 @@ const Button = styled.button`
   border: none;
   color: white;
   cursor: pointer;
+`;
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
 `;

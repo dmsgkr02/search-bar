@@ -39,6 +39,7 @@ export default function SearchWordBox({
   return (
     <Container>
       <ContentDiv>
+        <Title>추천 검색어</Title>
         {recommendKeyword.map((keyword: Sick, index) => {
           return (
             <SearchItem key={keyword.sickCd} word={keyword.sickNm} active={activeIndex === index} />
@@ -56,7 +57,11 @@ const Container = styled.div`
 `;
 
 const ContentDiv = styled.div`
-  padding: 10px;
-  border: 1px solid red;
-  border-radius: 30px;
+  border-radius: 30px 30px 0 0;
+  border: 1px solid lightgray;
+  padding: 10px 0 0 0;
+`;
+
+const Title = styled.div`
+  padding: 10px 20px;
 `;
