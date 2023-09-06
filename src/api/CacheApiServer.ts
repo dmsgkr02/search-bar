@@ -1,6 +1,3 @@
-import { AxiosResponse } from 'axios';
-import instance from '.';
-
 const HEADER_FETCH_DATE = 'fetch-date';
 const MILLISECONDS = 1000;
 const MINUTES = 60;

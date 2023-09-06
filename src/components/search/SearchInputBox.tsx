@@ -8,15 +8,11 @@ type Props = {
   setSearchWord: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const regExp = /^[ㄱ-ㅎ가-힣a-zA-Z]+$/;
+// const regExp = /^[ㄱ-ㅎ가-힣a-zA-Z]+$/;
 
 export default function SearchInputBox({ changeFocus, searchWord, setSearchWord }: Props) {
   const handleSearchWord = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchWord(event.target.value);
-  };
-
-  const cacheTest = async () => {
-    const data = await cacheApiServer.getDataByQuery(searchWord);
   };
 
   return (
@@ -30,7 +26,7 @@ export default function SearchInputBox({ changeFocus, searchWord, setSearchWord 
         value={searchWord}
         onChange={event => handleSearchWord(event)}
       />
-      <Button onClick={cacheTest}>검색</Button>
+      <Button>검색</Button>
     </Container>
   );
 }

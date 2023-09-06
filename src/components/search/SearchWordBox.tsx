@@ -48,8 +48,3 @@ const ContentDiv = styled.div`
   border: 1px solid red;
   border-radius: 30px;
 `;
-
-const Hr = styled.hr`
-  border: 1px solid lightgray;
-  width: 100%;
-`;
