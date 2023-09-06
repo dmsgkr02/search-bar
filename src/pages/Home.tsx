@@ -1,6 +1,6 @@
 import React from 'react';
-import SearchBar from '../components/search/SearchBar';
+import Search from '../components/search/Search';
 
 export default function Home() {
-  return <SearchBar />;
+  return <Search searchTitle="국내 모든 임상시험 검색하고 온라인으로 참여하기" />;
 }
