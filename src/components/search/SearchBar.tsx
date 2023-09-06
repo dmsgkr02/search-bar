@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import useToggle from '../../hooks/useToggle';
 import SearchInputBox from './SearchInputBox';
 import SearchWordBox from './SearchWordBox';
