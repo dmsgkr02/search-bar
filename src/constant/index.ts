@@ -7,3 +7,5 @@ export const IMAGE_ALT = '돋보기 이미지';
 export const MAXIMUM_ITEM = 10;
 export const DEBOUNCE_TERM = 1000;
 export const SEARCH_TITLE = '국내 모든 임상시험 검색하고 온라인으로 참여하기';
+export const ARROW_DOWN = 'ArrowDown';
+export const ARROW_UP = 'ArrowUp';

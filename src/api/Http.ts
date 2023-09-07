@@ -1,32 +1,33 @@
-import { HEADER_FETCH_DATE, MILLISECONDS, MINUTES, EXPIRE_TIME_ONE_MINUTES } from '../constant';
+import { HEADER_FETCH_DATE, EXPIRE_TIME_ONE_MINUTES } from '../constant';
+import { CacheStorage } from './CacheStorage';
 
-class CacheApiServer {
-  private cacheStorageName: string;
+class HttpClient {
   private baseUrl: string | undefined;
+  private cacheStorage: CacheStorage;
 
-  constructor(cacheStorageName: string, baseUrl: string | undefined) {
-    this.cacheStorageName = cacheStorageName;
+  constructor(baseUrl: string | undefined, cacheStorage: CacheStorage) {
     this.baseUrl = baseUrl;
+    this.cacheStorage = cacheStorage;
   }
 
   async getDataByQuery(query: string) {
-    const cache = await caches.open(this.cacheStorageName);
+    this.cacheStorage.open();
 
-    return await this.getValidResponse(cache, query);
+    return await this.getValidResponse(query);
   }
 
-  private async getValidResponse(cache: Cache, query: string) {
-    const cacheResponse = await cache.match(query);
+  private async getValidResponse(query: string) {
+    const cacheResponse = await this.cacheStorage.match(query);
 
     return cacheResponse && this.isCacheValid(cacheResponse)
       ? await cacheResponse.json()
-      : await this.getFetchResponse(cache, query);
+      : await this.getFetchResponse(query);
   }
 
-  private async getFetchResponse(cache: Cache, query: string) {
-    const response = await fetch(`${this.baseUrl}/${this.cacheStorageName}?q=${query}`);
+  private async getFetchResponse(query: string) {
+    const response = await fetch(`${this.baseUrl}/${this.cacheStorage.name}?q=${query}`);
     const newResponse = await this.getResponseWithDate(response);
-    cache.put(query, newResponse);
+    this.cacheStorage.set(query, newResponse);
 
     console.info('calling  api');
     return response.json();
@@ -53,4 +54,4 @@ class CacheApiServer {
   }
 }
 
-export const cacheApiServer = new CacheApiServer('sick', process.env.REACT_APP_BASE_URL);
+export const httpClient = new HttpClient(process.env.REACT_APP_BASE_URL, new CacheStorage('sick'));

@@ -1,7 +1,11 @@
 import React from 'react';
-import Search from '../components/search/Search';
-import { SEARCH_TITLE } from '../constant';
+import { SearchContextProvider } from '../context/SearchContext';
+import SearchForm from '../components/SearchForm';
 
-export default function Home() {
-  return <Search searchTitle={SEARCH_TITLE} />;
+export default function HomeRe() {
+  return (
+    <SearchContextProvider>
+      <SearchForm />
+    </SearchContextProvider>
+  );
 }
