@@ -5,7 +5,6 @@ import React, {
   useState,
   useCallback,
   useEffect,
-  useRef,
 } from 'react';
 import { Sick } from '../types';
 import { httpClient } from '../api/Http';
@@ -113,7 +112,7 @@ export function SearchContextProvider({ children }: { children: ReactNode }) {
         }
       }
     },
-    [setActiveIndex, keyword, setSearchWord],
+    [setActiveIndex, keyword, setInputValue, searchWord],
   );
 
   return (

@@ -3,9 +3,7 @@ import { useSearchContext } from '../context/SearchContext';
 import { Sick } from '../types';
 import { styled } from 'styled-components';
 
-type Props = {};
-
-export default function SearchList({}: Props) {
+export default function SearchList() {
   const { isFocus, keyword, activeIndex } = useSearchContext();
 
   return (
