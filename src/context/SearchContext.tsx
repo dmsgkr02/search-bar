@@ -57,11 +57,7 @@ export function SearchContextProvider({ children }: { children: ReactNode }) {
       }
 
       const result = await httpClient.getDataByQuery(debouncedValue);
-      if (result.length > MAXIMUM_ITEM) {
-        setKeyword(result.slice(0, MAXIMUM_ITEM));
-      } else {
-        setKeyword(result);
-      }
+      setKeyword(result.slice(0, MAXIMUM_ITEM));
     };
 
     getData();
@@ -78,32 +74,25 @@ export function SearchContextProvider({ children }: { children: ReactNode }) {
 
   const changeActiveIndex = useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (keyword.length === 0) return;
       switch (event.key) {
         case ARROW_UP: {
-          if (keyword.length > 0) {
-            setActiveIndex(prev => {
-              if (prev === -1) {
-                setInputValue(keyword[keyword.length - 1].sickNm);
-                return keyword.length - 1;
-              }
-              if (prev === 0) {
-                setInputValue(searchWord);
-              } else {
-                setInputValue(keyword[prev - 1].sickNm);
-              }
-              return prev - 1;
-            });
-          }
+          event.preventDefault();
+          setActiveIndex(prevIndex => {
+            const newIndex = prevIndex === -1 ? keyword.length - 1 : prevIndex - 1;
+            const newSearchText = newIndex === -1 ? searchWord : keyword[newIndex].sickNm;
+            setInputValue(newSearchText);
+            return newIndex;
+          });
           break;
         }
         case ARROW_DOWN: {
-          setActiveIndex(prev => {
-            if (prev >= keyword.length - 1) {
-              setInputValue(searchWord);
-              return -1;
-            }
-            setInputValue(keyword[prev + 1].sickNm);
-            return prev + 1;
+          event.preventDefault();
+          setActiveIndex(prevIndex => {
+            const newIndex = prevIndex === keyword.length - 1 ? -1 : prevIndex + 1;
+            const newSearchText = newIndex === -1 ? searchWord : keyword[newIndex].sickNm;
+            setInputValue(newSearchText);
+            return newIndex;
           });
           break;
         }
@@ -112,7 +101,7 @@ export function SearchContextProvider({ children }: { children: ReactNode }) {
         }
       }
     },
-    [setActiveIndex, keyword, setInputValue, searchWord],
+    [keyword],
   );
 
   return (
