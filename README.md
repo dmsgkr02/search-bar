@@ -17,8 +17,8 @@ npm start
 
 ```
 
-### 배포 링크
-추가해야함
+## 배포 링크
+https://search-bar-khaki.vercel.app/
 
 ## 과제 목표
 - API 호출별로 로컬 캐싱 구현
