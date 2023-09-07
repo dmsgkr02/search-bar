@@ -54,4 +54,8 @@ class HttpClient {
   }
 }
 
-export const httpClient = new HttpClient(process.env.REACT_APP_BASE_URL, new CacheStorage('sick'));
+const baseUrl =
+  process.env.NODE_ENV === 'production'
+    ? process.env.REACT_APP_PROD_API_URL
+    : process.env.REACT_APP_DEV_API_URL;
+export const httpClient = new HttpClient(baseUrl, new CacheStorage('sick'));
